@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-deployment
+  labels:
+    app: saitomcat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saitomcat
+  template:
+    metadata:
+      labels:
+        app: saitomcat
+    spec:
+      containers:
+      - name: argocd-deployment
+        image: saip1029/saitomcat
+        ports:
+        - containerPort: 8080
