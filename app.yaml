@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: saitomcat
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/saiprakashp/argocd.git'
+    path: manifest
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true #if you want to create ns
+    automated:
+      selfHeal: true
+      prune: true
+
